@@ -15,10 +15,12 @@ export default class Users extends Component {
         // * Getting the data for the card
         axios.get(`https://api.github.com/users/jnmendza`)
         .then(res => this.setState({user: res.data}))
+
+        console.log(`CardList axios`);
     }
 
     componentDidUpdate() {
-        console.log(this.state.user)
+        console.log(this.state.user, 'cDU')
     }
 
     render() {
@@ -27,7 +29,7 @@ export default class Users extends Component {
             <div>
                 <h1>Header Above UserCard</h1>
 
-        <UserCard data={this.state.user}/>
+                <UserCard key={this.state.user} user={this.state.user}/>
                 
             </div>
         )

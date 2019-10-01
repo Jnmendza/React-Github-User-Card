@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {useEffect} from "react";
 
-const UserCard = () => (
-    <div>
-        <h2>This is the UserCard</h2>
-    </div>
-)
+function UserCard(props){
+    const { user } = props;
+    useEffect(() =>{
+        console.log(user);
+    }, [user]);
 
-export default UserCard
+    return(
+        <div className="users">
+            <img src={props.user.avatar_url} alt="profile pic"/>
+            <p>Username: {props.user.login}</p>
+            <p>Followers: {props.user.followers}</p>
+            <p>Following: {props.user.following}</p>
+            <p>{props.user.bio}</p>
+
+        </div>
+    );
+};
+
+export default UserCard;

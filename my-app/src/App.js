@@ -1,35 +1,41 @@
 import React from 'react';
-import axios from 'axios';
 import './App.css';
-import CardList from "./components/CardList"
+import axios from "axios";
+
+import CardList from "./components/CardList";
+
 
 class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      user: [],
-    }
-  }
-  
+  state = {
+    user: [],
+  };
+
   componentDidMount() {
     axios
-      .get('https://api.github.com/users/jnmendza')
-      .then(res => {
-        this.setState(res);
-        // console.log(this.state);
+      .get(`https://api.github.com/users/jnmendza`)
+      .then(response =>{
+        console.log(response)
+        console.log(response.data.followers_url)
+        this.setState({
+          user: response.data
+        });
+        console.log(this.state);
       })
-      .catch(err => console.log(err))
-  } 
-  
+      .catch(err =>{
+        console.log(`error`)
+      })
+  }
+
   render(){
     return (
       <div className="App">
-        <h1 className="header">Header for App</h1>
-        
+        <header className="App-header">
+        <p>GitHub UserCards</p>
         <CardList />
+        </header>
       </div>
-    )
-  }
+    );
+  };
 }
 
 export default App;
