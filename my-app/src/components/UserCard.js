@@ -1,16 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const UserCard = () => {
-    const { user } = props;
-    useEffect(() => {
-        console.log(user);
-    }, [user]);
+const UserCard = () => (
+    <div>
+        <h2>This is the UserCard</h2>
+    </div>
+)
 
-    return(
-        <div>
-            <p>Name: {props.name}</p>
-        </div>
-    )
-}
-
-export default UserCard;
+export default UserCard
