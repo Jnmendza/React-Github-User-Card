@@ -1,9 +1,16 @@
 import React from 'react';
 import './App.css';
 import axios from "axios";
+import styled from 'styled-components';
+
+
 
 import UserCard from "./components/UserCard";
 
+
+const Grid = styled.div`
+  
+`;
 
 class App extends React.Component {
   state = {
@@ -44,10 +51,14 @@ class App extends React.Component {
       <div className="App">
         <div className="App-header">
         <p>GitHub UserCards</p>
+       <Grid>
         <UserCard key={this.state.user} user={this.state.user} />
+
         {this.state.followers.map(props =>(
-          <UserCard key={props.id} user={props} />
-        ))}
+        <UserCard key={props.followers} user={props} />
+
+          ))}
+          </Grid>  
         </div>
       </div>
     );
