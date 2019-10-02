@@ -7,8 +7,8 @@ function UserCard(props){
     }, [user]);
 
     return(
-        <div className="users">
-            <img src={props.user.avatar_url} alt="profile pic"/>
+        <div className="user">
+            <img src={props.user.avatar_url} alt="avatar"/>
             <p>Username: {props.user.login}</p>
             <p>Followers: {props.user.followers}</p>
             <p>Following: {props.user.following}</p>

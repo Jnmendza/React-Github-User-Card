@@ -2,12 +2,13 @@ import React from 'react';
 import './App.css';
 import axios from "axios";
 
-import CardList from "./components/CardList";
+import UserCard from "./components/UserCard";
 
 
 class App extends React.Component {
   state = {
     user: [],
+    followers: []
   };
 
   componentDidMount() {
@@ -24,15 +25,30 @@ class App extends React.Component {
       .catch(err =>{
         console.log(`error`)
       })
+
+    axios
+      .get('https://api.github.com/users/jnmendza/followers')  
+      .then(response =>{
+        this.setState({
+          followers: response.data
+        });
+        console.log(this.state, "followers info");
+      })
+      .catch(err =>{
+        console.log('error')
+      })
   }
 
   render(){
     return (
       <div className="App">
-        <header className="App-header">
+        <div className="App-header">
         <p>GitHub UserCards</p>
-        <CardList />
-        </header>
+        <UserCard key={this.state.user} user={this.state.user} />
+        {this.state.followers.map(props =>(
+          <UserCard key={props.id} user={props} />
+        ))}
+        </div>
       </div>
     );
   };
